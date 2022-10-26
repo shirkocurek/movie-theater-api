@@ -31,6 +31,21 @@ const seed = async () => {
     await Promise.all(ShowPromises); // The Promise.all() method takes an iterable of promises as an input, and returns a single Promise that resolves to an array of the results of the input promises.
     await Promise.all(UserPromises)
 
+    users[0].setShow([
+        shows[0],
+        shows[1],
+        shows[2],
+        shows[3],
+
+    ])
+    users[1].setShow([
+        shows[4],
+        shows[5],
+        shows[6],
+        shows[7],
+        shows[8]
+    ])
+
     console.log("Shows and User database info populated!")
 }
 

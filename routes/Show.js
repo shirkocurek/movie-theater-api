@@ -1,7 +1,13 @@
 const express = require('express')
 const router = express.Router();
 const {check, validationResult} = require("express-validator");
-const {Show} = require("../models/Show")
+const {Show} = require("../models/index")
+const {User} = require("../models/index")
+const app = express();
+
+app.use(express.json())
+app.use(express.urlencoded({extended : true}))
+
 
 
 router.get('/', async (req, res) => {
@@ -14,9 +20,14 @@ router.get('/:id', async (req, res) => {
     res.json(foundshow);
   })
 
-  router.get('/:id/genre', async (req, res) => {
-    const showAtGenre = await Show.findByPk(req.params.genre)
-    res.json(showAtGenre);
+  router.get('/genres/:genre', async (req, res) => {
+    const genre = await Show.findAll({
+       where : {
+        genre : req.params.genre
+       }
+    })
+  
+    res.json(genre);
   })
   
 
