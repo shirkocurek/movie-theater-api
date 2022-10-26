@@ -13,7 +13,27 @@ router.get('/:id', async (req, res) => {
     const foundshow = await Show.findByPk(req.params.id);
     res.json(foundshow);
   })
+
+  router.get('/:id/genre', async (req, res) => {
+    const showAtGenre = await Show.findByPk(req.params.genre)
+    res.json(showAtGenre);
+  })
   
+
+
+
+
+
+
+
+
+
+  router.delete("/:id", async (req, res) =>{
+    const shows = await Show.findByPk(req.params.id)
+    const deletedShow = await shows.destroy();
+    res.json(deletedShow);
+     
+  })
 
 
 
