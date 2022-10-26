@@ -40,10 +40,12 @@ router.get('/:id', async (req, res) => {
 
 
   router.delete("/:id", async (req, res) =>{
-    const shows = await Show.findByPk(req.params.id)
-    const deletedShow = await shows.destroy();
-    res.json(deletedShow);
-     
+    const showtodelete = await Show.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+     res.json(await Show.findAll())
   })
 
 
