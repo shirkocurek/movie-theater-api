@@ -21,8 +21,14 @@ router.get('/:id', async (req, res) => {
     res.json(founduser);
   })
 
-router.get('/shows/:userId', async(req,res) =>{
-  const showsWatched = await Show.findByPk(req.params.userId);
+// GET all shows watched by a user (user id in req.params)//
+
+router.get('/:id/shows', async(req,res) =>{
+  const showsWatched = await Show.findAll({
+    where: {
+      userId : req.params.id
+    }
+  });
 
   res.json(showsWatched);
 })
