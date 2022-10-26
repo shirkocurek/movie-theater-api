@@ -5,6 +5,8 @@ const {User} = ("./models/index");
 const {Shows} = ("./models/index");
 const seed = require("./seed")
 const seedData = seed();
+const router = require("./routers/Show");
+const router = require("./routers/User");
 
 
 
