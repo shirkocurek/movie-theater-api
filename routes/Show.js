@@ -28,11 +28,16 @@ router.get("/genres/:genre", async (req, res) => {
 });
 
 // PUT update rating of a show that has been watched //
-router.put("/:showId/watched", async (req, res) => {
+router.put("/:showId/watched",[check("rating").not().isEmpty().trim()], async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.json({ error: errors.array() });
+  } else {
   const updaterating = await Show.findByPk(req.params.showId);
   updaterating.update({ rating: req.body.rating });
   console.log("testing", req.body);
   res.json(updaterating);
+  }
 });
 
 // PUT update the status of a show //
