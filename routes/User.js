@@ -1,13 +1,11 @@
 const express = require('express')
 const router = express.Router();
-const {check, validationResult} = require("express-validator");
 const {User} = require("../models/index")
 const {Show} = require("../models/index")
-const app = express();
 
 
-app.use(express.json())
-app.use(express.urlencoded({extended : true}))
+
+
 
 
 // GET all users //
