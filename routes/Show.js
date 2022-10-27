@@ -34,17 +34,24 @@ router.get('/:id', async (req, res) => {
   })
 
 // PUT update rating of a show that has been watched //
-router.put("/:showId/ratings/:rating", async (req, res) =>{
+router.put("/:showId/watched", async (req, res) =>{
   const updaterating = await Show.findByPk(req.params.showId)
-  await updaterating.update(req.body)
+  updaterating.update({rating: req.body.rating})
+  console.log("testing",req.body)
   res.json(updaterating)
 })
 
 // PUT update the status of a show //
-router.put(":showId/status/:status", async (req,res)=>{
+router.put("/:showId/updates",[check("status").not().isEmpty().trim().isLength({ min: 5, max:25 })], async (req,res)=>{
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+    res.json({error: errors.array()})
+}
+else{
   const updatestatus = await Show.findByPk(req.params.showId)
-   await updatestatus.update(req.body)
+   updatestatus.update({status: req.body.status})
    res.json(updatestatus)
+}
 })
   
 
