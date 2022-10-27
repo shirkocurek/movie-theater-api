@@ -34,6 +34,7 @@ router.get('/:id/shows', async(req,res) =>{
 })
 
 // PUT update and add a show if a user has watched it //
+
   
   
 

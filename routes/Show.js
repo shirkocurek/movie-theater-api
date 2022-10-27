@@ -35,7 +35,7 @@ router.get('/:id', async (req, res) => {
 
 // PUT update rating of a show that has been watched //
 router.put("/ratings/:rating", async (req, res) =>{
-  const rating = await Show.findAll({
+  await Show.update(req.body, {
     where: {
       rating : req.params.rating
     }
